@@ -1,92 +1,149 @@
-/* App.css — Cute Styling 💖 */
+/* General styling */
 body, html {
   margin: 0;
   padding: 0;
-  font-family: 'Comic Sans MS', 'Poppins', cursive;
-  background-color: #fff0f5;
-  height: 100%;
-  overflow-x: hidden;
+  font-family: 'Mudstone', 'Poppins', san;
+  background: #fff0f5;
+  overflow: hidden;
 }
 
-.app {
+.container {
   text-align: center;
-  padding-top: 10vh;
+  padding: 50px 20px;
+  position: relative;
+  height: 100vh;
 }
 
+/* Main Heading */
 h1 {
-  font-size: 2.2rem;
-  color: #ff69b4;
-  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #ff3e6c;
+  margin-bottom: 30px;
 }
 
-.buttons {
+/* Buttons */
+.btns {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 40px;
+  flex-wrap: wrap;
 }
 
 button {
-  font-size: 1.2rem;
   padding: 12px 24px;
+  font-size: 1.2rem;
   border: none;
-  border-radius: 12px;
+  border-radius: 20px;
+  transition: transform 0.2s ease;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
 }
 
+/* Yes Button */
 .yes {
-  background-color: #ffb6c1;
-  color: #fff;
+  background: #ff8bbd;
+  color: white;
+  box-shadow: 0 4px 8px rgba(255, 139, 189, 0.4);
 }
 
 .yes:hover {
-  background-color: #ff69b4;
   transform: scale(1.1);
+  background-color: #ff6fa6;
 }
 
+/* No Button (moving) */
 .no {
-  background-color: #d3d3d3;
-  color: #444;
+  background: #eee;
+  color: #555;
+  box-shadow: 0 4px 8px rgba(100, 100, 100, 0.2);
   position: relative;
 }
 
-.love-screen {
-  text-align: center;
-  padding: 30px;
-}
-
-.love-screen img {
-  width: 200px;
+/* Love screen after "Yes" */
+.love .bear {
+  width: 180px;
   margin-bottom: 20px;
 }
 
-.love-screen h1 {
+.love h2 {
   color: #ff69b4;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+}
+
+/* Typewriter */
+.typewriter {
+  margin: 20px auto;
+  max-width: 300px;
+}
+
+/* Certificate */
+.cert-btn,
+.certificate button {
+  margin-top: 20px;
+  background: #ffb6c1;
+  color: #fff;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 2px 6px rgba(255, 182, 193, 0.5);
+}
+
+.cert-btn:hover,
+.certificate button:hover {
+  background: #ff94a8;
+  transform: scale(1.05);
 }
 
 .certificate {
-  text-align: center;
-  background-color: #ffe4e1;
-  padding: 40px;
+  background: #ffe4e1;
+  padding: 30px;
+  max-width: 500px;
   margin: 30px auto;
   border-radius: 16px;
-  max-width: 500px;
-  box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
-}
-
-.certificate h2 {
-  color: #ff1493;
+  box-shadow: 0 0 15px rgba(255, 182, 193, 0.5);
 }
 
 .certificate ul {
   text-align: left;
+  list-style: disc;
+  margin: 20px auto;
   display: inline-block;
-  margin-top: 10px;
   color: #444;
 }
 
-.certificate button {
-  margin-top: 20px;
-  background-color: #ff69b4;
-  color: white;
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .btns {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .love h2 {
+    font-size: 1.4rem;
+  }
+
+  .typewriter {
+    max-width: 90%;
+  }
+
+  .certificate {
+    width: 90%;
+    padding: 20px;
+  }
+}
+.clicked {
+  animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.2); }
+  50%  { transform: scale(0.95); }
+  70%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
