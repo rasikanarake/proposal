@@ -1,4 +1,3 @@
-// App.jsx
 import React, { useState } from 'react';
 import Confetti from 'react-confetti';
 import Typewriter from 'react-typewriter-effect';
@@ -7,18 +6,19 @@ import './App.css';
 
 import bear from './bear.png';
 import happy from './cute.gif';
+import angryCuteGif from './angry-cute.gif';
 import clickSound from './click.mp3';
-import hornSound from './horn.mp3';
-import confettiSound from './cute-confetti.mp3';
 import blushSound from './blush.mp3';
-import sparkleSound from './sparkle.mp3';
-import giggleSound from './giggle.mp3';
 import moveNoSound from './moveNo.mp3';
+import sparkSound from './spark.mp3';
 
 function App() {
   const { width, height } = useWindowSize();
   const [step, setStep] = useState(0);
-  const [showConfetti, setShowConfetti] = useState(true);
+  const [noCount, setNoCount] = useState(0);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [showAngryPopup, setShowAngryPopup] = useState(false);
+  const [showSparkles, setShowSparkles] = useState(false);
 
   const play = (sound, volume = 1) => {
     const audio = new Audio(sound);
@@ -36,24 +36,34 @@ function App() {
   const moveNo = (e) => {
     const btn = e.target;
     btn.style.position = 'absolute';
-    btn.style.left = `${Math.random() * (window.innerWidth - 80)}px`;
-    btn.style.top = `${Math.random() * (window.innerHeight - 80)}px`;
-    play(moveNoSound, 0.6);
+    btn.style.left = `${Math.random() * (window.innerWidth - 100)}px`;
+    btn.style.top = `${Math.random() * (window.innerHeight - 100)}px`;
+    play(moveNoSound, 0.7);
+    const newCount = noCount + 1;
+    setNoCount(newCount);
+    if (newCount === 3) {
+      setShowAngryPopup(true);
+      
+    }
   };
 
   const handleYes = (e) => {
     animateClick(e);
     play(clickSound);
     play(blushSound, 0.8);
-    setShowConfetti(true);
-    setStep(1);
-    setTimeout(() => setShowConfetti(false), 5000);
+    setShowConfetti(true); // Show confetti immediately
+    setShowSparkles(true); // Optional: keep sparkles showing
+          setStep(1);             // Move to 2nd page
+    setTimeout(() => {
+      setShowConfetti(false); // Stop confetti after 5 seconds
+      setShowSparkles(false); // Stop sparkles if you want
+      setStep(1);             // Move to 2nd page
+    }, 4500); // Duration of 5 seconds for confetti
   };
 
   const handleViewLicense = (e) => {
     animateClick(e);
-    play(clickSound);
-    play(sparkleSound, 0.7);
+    play(sparkSound);
     setStep(2);
   };
 
@@ -61,15 +71,43 @@ function App() {
     animateClick(e);
     play(clickSound);
     setStep(0);
+    setNoCount(0);
+    setShowConfetti(false);
+    setShowSparkles(false);
   };
 
   return (
     <div className="container">
+      {showConfetti && <Confetti width={width} height={height} numberOfPieces={550} />}
+
+      {/* Uncomment and use sparkles if desired */}
+      {/* {showSparkles && (
+        <div className="sparkle-container">
+          <span className="sparkle">💖</span>
+          <span className="sparkle">✨</span>
+          <span className="sparkle">💋</span>
+        </div>
+      )} */}
+
+      {showAngryPopup && (
+        <div className="popup angry-popup">
+          <div className="popup-content shake">
+            <h3>ADITYA! ENOUGH 😤💢</h3>
+            <img src={angryCuteGif} alt="angry cute" className="angry-gif" />
+            <p>You can’t run forever! Say YES nowww 😡💕</p>
+            <button onClick={() => { setShowAngryPopup(false) ; play(sparkSound);}}>Okay okay 😅</button>
+          </div>
+        </div>
+      )}
+
       {step === 0 && (
         <>
           <p className="sneaky-text top">I pinky promise I won't crash 🥹</p>
           <img src={happy} alt="happy gif" className="happy-gif" />
           <h1>Aditya... will you teach me how to ride a scooty? 🛵💕</h1>
+          {noCount >= 3 && (
+            <p className="sneaky-text middle">Bruhhh 😩 You trying to dodge me? My puppy eyes getting stronger 😤🐶</p>
+          )}
           <p className="sneaky-text bottom">Say yes or prepare to be haunted by puppy eyes forever 🐶👀</p>
           <div className="btns">
             <button className="yes" onClick={handleYes}>Yes 😍</button>
@@ -80,18 +118,28 @@ function App() {
 
       {step === 1 && (
         <div className="love">
-          {showConfetti && <Confetti width={width} height={height} numberOfPieces={150} recycle={false} />}
           <img src={bear} alt="bear" className="bear" />
-          <h2>Thank youuuu Aditya!! Love you soooo much 💗</h2>
+          <h2 className="pulse">Thank youuuu Aditya!! Love you soooo much 💗</h2>
           <div className="typewriter">
             <Typewriter
-              textStyle={{ fontFamily: 'Comic Sans MS', color: '#ff4d6d', fontSize: '1.2rem' }}
+              textStyle={{
+                fontFamily: 'Comic Sans MS',
+                color: '#ff4d6d',
+                fontSize: '1.2rem'
+              }}
               startDelay={500}
               cursorColor="#ff4d6d"
-              multiText={[
-                'Now no take‑backs! You’re officially my scooty coach! 💋🛵',
-                'PS: Scooty lessons come with cuddles. Non‑negotiable 😚💞',
-              ]}
+              multiText={
+                noCount === 0
+                  ? [
+                      'You said YES right away?!? I knew you were the one 💖🛵',
+                      'Fastest yes ever = infinite brownie points 🍪💘',
+                    ]
+                  : [
+                      'Now no take‑backs! You’re officially my scooty coach! 💋🛵',
+                      'PS: Scooty lessons come with cuddles. Non‑negotiable 😚💞',
+                    ]
+              }
               typeSpeed={100}
               multiTextDelay={1500}
               multiTextLoop={false}
