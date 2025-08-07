@@ -1,155 +1,161 @@
-/* General styling */
-body, html {
+/* App.css */
+body {
   margin: 0;
   padding: 0;
-  font-family: 'chewy';
-  background: #fff0f5;
-  overflow: hidden;
+  font-family: 'Comic Sans MS', cursive;
+  background: linear-gradient(to right, #ffe0ec, #fffaf0);
+  overflow-x: hidden;
 }
 
 .container {
   text-align: center;
-  padding: 50px 20px;
-  position: relative;
-  height: 100vh;
+  padding: 2rem;
 }
 
-/* Main Heading */
-h1 {
-  font-size: 2rem;
-  color: #ff3e6c;
-  margin-bottom: 30px;
-}
-
-/* Buttons */
-.btns {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
+h1, h2 {
+  color: #ff4d6d;
+  text-shadow: 1px 1px 2px #fff;
 }
 
 button {
-  padding: 12px 24px;
-  font-size: 1.2rem;
+  font-family: inherit;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 1rem;
   border: none;
-  border-radius: 20px;
-  transition: transform 0.2s ease;
+  border-radius: 12px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Yes Button */
+button.clicked {
+  transform: scale(0.95);
+  background-color: #ffbbcc;
+}
+
 .yes {
-  background: #ff8bbd;
-  color: white;
-  box-shadow: 0 4px 8px rgba(255, 139, 189, 0.4);
+  background-color: #ffc0cb;
+  color: #fff;
 }
 
 .yes:hover {
-  transform: scale(1.1);
-  background-color: #ff6fa6;
+  background-color: #ff8fab;
 }
 
-/* No Button (moving) */
 .no {
-  background: #eee;
-  color: #555;
-  box-shadow: 0 4px 8px rgba(100, 100, 100, 0.2);
+  background-color: #e0e0e0;
+  color: #333;
   position: relative;
 }
 
-/* Love screen after "Yes" */
-.love .bear {
-  width: 180px;
-  margin-bottom: 20px;
+.happy-gif {
+  width: 140px;
+  height: auto;
+  margin: 20px auto;
 }
 
-.love h2 {
-  color: #ff69b4;
-  margin-bottom: 20px;
-  font-size: 1.6rem;
+.bear {
+  width: 150px;
+  margin: 20px auto;
+  animation: float 2s ease-in-out infinite;
 }
 
-/* Typewriter */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.sneaky-text {
+  color: #8a2be2;
+  font-size: 0.9rem;
+  font-style: italic;
+  opacity: 0.7;
+  animation: fadeIn 2s ease forwards;
+}
+
+.sneaky-text.top {
+  margin-bottom: 10px;
+}
+
+.sneaky-text.bottom {
+  margin-top: 10px;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 0.7; }
+}
+
 .typewriter {
   margin: 20px auto;
-  max-width: 300px;
-}
-
-/* Certificate */
-.cert-btn,
-.certificate button {
-  margin-top: 20px;
-  background: #ffb6c1;
-  color: #fff;
-  padding: 12px 20px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 2px 6px rgba(255, 182, 193, 0.5);
-}
-
-.cert-btn:hover,
-.certificate button:hover {
-  background: #ff94a8;
-  transform: scale(1.05);
-}
-
-.certificate {
-  background: #ffe4e1;
-  padding: 30px;
   max-width: 500px;
-  margin: 30px auto;
-  border-radius: 16px;
-  box-shadow: 0 0 15px rgba(255, 182, 193, 0.5);
+}
+
+.cert-btn {
+  background-color: #ffd6e0;
+  color: #d63384;
+  font-weight: bold;
+  border: 2px dashed #ffa6c9;
+}
+
+.cert-btn:hover {
+  background-color: #ffb3c6;
+}
+
+.pretty-cert {
+  background: #fff0f5;
+  border: 4px dashed #ffa6c9;
+  padding: 2rem;
+  border-radius: 25px;
+  max-width: 600px;
+  margin: auto;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .certificate ul {
   text-align: left;
-  list-style: disc;
-  margin: 20px auto;
-  display: inline-block;
-  color: #444;
+  margin-top: 1rem;
+  list-style: none;
+  padding-left: 0;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 1.6rem;
-  }
-
-  .btns {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .love h2 {
-    font-size: 1.4rem;
-  }
-
-  .typewriter {
-    max-width: 90%;
-  }
-
-  .certificate {
-    width: 90%;
-    padding: 20px;
-  }
-}
-.clicked {
-  animation: bounce 0.5s ease;
+.certificate ul li {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #dc2f71;
 }
 
-@keyframes bounce {
-  0%   { transform: scale(1); }
-  30%  { transform: scale(1.2); }
-  50%  { transform: scale(0.95); }
-  70%  { transform: scale(1.05); }
-  100% { transform: scale(1); }
+.cert-heading {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #e75480;
 }
-.happy-gif {
-  width: 150px;
-  margin-bottom: 20px;
-  border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
+
+.cert-name {
+  font-size: 2rem;
+  color: #d63384;
+  font-weight: bold;
+}
+
+.cert-for {
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  color: #ff69b4;
+}
+
+.cert-footer {
+  margin-top: 2rem;
+  font-style: italic;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.cert-sign {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #555;
 }
