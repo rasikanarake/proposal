@@ -147,3 +147,9 @@ button {
   70%  { transform: scale(1.05); }
   100% { transform: scale(1); }
 }
+.happy-gif {
+  width: 150px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
+}

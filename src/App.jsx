@@ -5,6 +5,7 @@ import { useWindowSize } from 'react-use';
 import './App.css';
 
 import bear from './bear.png';
+import happy from './cute.gif'; // NEW GIF ✅
 import clickSound from './click.mp3';
 import hornSound from './horn.mp3';
 import confettiSound from './cute-confetti.mp3';
@@ -54,7 +55,8 @@ function App() {
     <div className="container">
       {step === 0 && (
         <>
-          <h1>Will you teach me how to ride a scooty? 🛵💕</h1>
+          <img src={happy} alt="happy gif" className="happy-gif" /> {/* NEW */}
+          <h1>Aditya... will you teach me how to ride a scooty? 🛵💕</h1>
           <div className="btns">
             <button className="yes" onClick={handleYes}>Yes 😍</button>
             <button className="no" onMouseEnter={moveNo}>No 🙈</button>
@@ -66,7 +68,7 @@ function App() {
         <div className="love">
           <Confetti width={width} height={height} numberOfPieces={200} />
           <img src={bear} alt="bear" className="bear" />
-          <h2>Thank youuuu!! Love you soooo much 💗</h2>
+          <h2>Thank youuuu !! Love you soooo much 💗</h2>
           <div className="typewriter">
             <Typewriter
               textStyle={{ fontFamily: 'Comic Sans MS', color: '#ff4d6d', fontSize: '1.2rem' }}
@@ -90,7 +92,7 @@ function App() {
       {step === 2 && (
         <div className="certificate">
           <h2>🛵 OFFICIAL SCOOTY COACH LICENCE 💕</h2>
-          <p>This certifies that YOU have officially agreed to teach me how to ride a scooty!</p>
+          <p>This certifies that <b>Aditya</b> has officially agreed to teach me how to ride a scooty! 🥹</p>
           <ul>
             <li>✅ Unlimited cuddles included</li>
             <li>✅ Non-refundable YES</li>
