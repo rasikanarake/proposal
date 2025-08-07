@@ -111,7 +111,8 @@ function App() {
           <p className="sneaky-text bottom">Say yes or prepare to be haunted by puppy eyes forever 🐶👀</p>
           <div className="btns">
             <button className="yes" onClick={handleYes}>Yes 😍</button>
-            <button className="no" onMouseOver={moveNo}>No 🙈</button>
+            <button className="no"  onMouseOver={moveNo} onTouchStart={moveNo}>No 🙈</button>
+
           </div>
         </>
       )}
